@@ -17,4 +17,4 @@ test: pngs example/image.png example/secret.txt
 	diff extracted-message.txt example/secret.txt
 
 clean:
-	rm -rf *.o pngs
+	rm -rf *.o pngs extracted-message.txt output.png
