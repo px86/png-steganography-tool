@@ -1,0 +1,7 @@
+pngs
+*.o
+extracted-message.txt
+output.png
+*.orig
+*.rej
+.clangd
