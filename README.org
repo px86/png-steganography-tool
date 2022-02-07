@@ -1,0 +1,40 @@
+#+TITLE: PNG-Steganography Tool
+#+AUTHOR: Pushkar Raj <px86@protonmail.com>
+
+* About
+
+This tool allows you to embed/extract arbitrary stream of bytes into/from a PNG image.
+
+* Compilation
+
+#+begin_src shell
+  make
+#+end_src
+
+or
+
+#+begin_src shell
+  g++ -Wall -Werror -std=c++17 src/main.cpp src/pngs.cpp src/crc.cpp -o pngs
+#+end_src
+
+* Usage
+
+You can use this tool in three ways:
+
+1. Print the metadata of the chunks of a PNG image.
+
+#+begin_src shell
+ ./pngs example/image.png
+#+end_src
+
+2. Hide some file inside a PNG image. It generates a new PNG image with the data embedded into it.
+
+#+begin_src shell
+ ./pngs example/image.png example/secret.txt output.png
+#+end_src
+
+3. Extract a chunk (specified by the chunk type) from the PNG image, and save it into a file.
+
+#+begin_src shell
+  ./pngs -x scrt secret.png extracted-message.txt
+#+end_src
