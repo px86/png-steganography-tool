@@ -17,24 +17,39 @@ or
   g++ -Wall -Werror -std=c++17 src/main.cpp src/pngs.cpp src/crc.cpp -o pngs
 #+end_src
 
+To run the test,
+
+#+begin_src shell
+  make test
+#+end_src
+
 * Usage
 
-You can use this tool in three ways:
-
-1. Print the metadata of the chunks of a PNG image.
+Run =pngs --help=
 
 #+begin_src shell
- ./pngs example/image.png
+  Usage: pngs [OPTIONS] <pngfile> <outfile>
+  <pngfile>           PNG file path
+  <outfile>           output file path
+
+  Options:
+    --help            Print this help message
+    --extract, -x VAL chunk type to be extracted
+    --secret, -s VAL  path of file which is to be hidden
 #+end_src
 
-2. Hide some file inside a PNG image. It generates a new PNG image with the data embedded into it.
+* Example
+
+Let's say you have some message in a text file called =secret.txt= and a PNG image called =image.png=. And you want to hide this message inside of =image.png= and save the new image as =output.png=.
+
+To do so, run
 
 #+begin_src shell
- ./pngs example/image.png example/secret.txt output.png
+  pngs --secret secret.txt image.png output.png
 #+end_src
 
-3. Extract a chunk (specified by the chunk type) from the PNG image, and save it into a file.
+To extract the information from =output.png=, and save the text into a file called =extracted-msg.txt=, run
 
 #+begin_src shell
-  ./pngs -x scrt secret.png extracted-message.txt
+  pngs --extract scrt output.png extracted-msg.txt
 #+end_src

@@ -12,8 +12,8 @@ crc.o: src/crc.cpp src/include/crc.hpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 test: pngs example/image.png example/secret.txt
-	./pngs example/image.png example/secret.txt output.png
-	./pngs -x scrt output.png extracted-message.txt
+	./pngs --secret example/secret.txt example/image.png output.png
+	./pngs --extract scrt output.png extracted-message.txt
 	diff extracted-message.txt example/secret.txt
 
 clean:
